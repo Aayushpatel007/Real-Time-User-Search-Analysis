@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results</title>
+
+    <!-- bootstrap css -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/particle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/static/css/tagsinput.css">
+    <link rel="stylesheet" href="/static/css/searchresult.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="app_page1">
+                <div class="col-sm-4" id="left">
+                    {% for something in docs_list%}
+                    <div class="card bg-dark text-white" id="{{something.File_name}}" onclick="changeFile(this.id)">
+                        <div class="card-body">
+                            <h4 class="card-title">{{something.File_name}}</h4>
+                            <p class="card-text">location </p>
+                            <p class="card-text">Date</p>
+                            <input type="text" id="{{something.File_name}}hidden" value="{{something}}" hidden>
+                        </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8" id="right">
+                    <br>
+                    <div>
+                        <h2 id="fileName"></h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item hideifblank">
+                                <h5><b>Location</b>:</h5>
+                            </li>
+                            <li class="list-group-item hideifblank">
+                                <h5><b>Date Uploaded</b>:</h5>
+                            </li>
+                            <li class="list-group-item hideifblank">
+                                <h5><b>Version</b>:</h5>
+                            </li>
+                            <li class="list-group-item hideifblank" id="summaryli">
+
+                                <h5><b>Summary:</b></h5>
+                                <p class="summary p-3 " id="summary"></p>
+                            </li>
+                            <li class="list-group-item hideifblank">
+
+                                <h5><b>Key Phrases:</b></h5>
+                                <div class="p-2" id="keyPhrase">
+
+
+
+                                </div>
+                            </li>
+                            <li class="list-group-item hideifblank">
+                                <h5><b>Named Entities:</b></h5>
+                                <div class="p-2">
+
+                                    <span id="person"><b>Persons</b> :</span>
+
+
+
+                                    <br>
+                                    <span id="loc"><b>Location</b> :</span>
+
+
+
+
+                                    <br>
+                                    <span id="org"><b>ORG</b> :</span>
+
+                                    <h6 class="d-none"><b>URL</b>:</h6 class="d-none">
+                                    <h6 class="d-none"><b>Email</b>:</h6>
+                                </div>
+                            </li>
+                            <li class="list-group-item hideifblank"><b>Similer Doc</b> Content</li>
+
+                        </ul>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- js -->
+    <!-- particle -->
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+
+    </script>
+    <script src="/static/js/particle.js"></script>
+    <script src="/static/js/tagsinput.js"></script>
+
+    <!-- bootsttrap -->
+    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tags').tagsinput({
+                allowDuplicates: true
+            });
+        });
+    </script>
+    <script>
+        function changeFile(param) {
+  
+            
+            $('.hideifbla').addClass('d-none')
+            // document.getElementsByClassName('hideifblank').classList.add('d-none');
+            let documentData = document.getElementById(param + 'hidden').value;
+            let myObj = eval('(' + documentData + ')')
+            console.log(myObj)
+            document.getElementById('fileName').innerHTML = myObj['File_name']
+            
+            if (myObj['Summary']) {
+                document.getElementById('summaryli').classList.remove('d-none')
+                document.getElementById('summary').innerHTML = myObj['Summary']
+            }
+
+            if (myObj['Top_Phrases_With_Ranking']) {
+                document.getElementById('keyPhrase').classList.remove('d-none')
+                var x = ''
+
+                for (i in myObj['Top_Phrases_With_Ranking']) {
+                    x = x + '<span class="badge badge-primary badge-pill prase_badge">' + myObj[
+                        'Top_Phrases_With_Ranking'][i] + '</span>'
+                }
+                document.getElementById('keyPhrase').innerHTML = x
+
+            }
+            if (myObj['Organizations']) {
+                document.getElementById('org').classList.remove('d-none')
+                var x = '<b>ORG:</b>'
+
+                for (i in myObj['Organizations']) {
+                    x = x + '<span class="badge badge-success badge-pill prase_badge">' + myObj['Organizations'][i] +
+                        '</span>'
+                }
+                document.getElementById('org').innerHTML = x
+
+            }
+            if (myObj['Locations']) {
+                document.getElementById('loc').classList.remove('d-none')
+                var x = '<b>Locations:</b>'
+
+                for (i in myObj['Locations']) {
+                    x = x + '<span class="badge badge-dark badge-pill prase_badge">' + myObj['Locations'][i] + '</span>'
+                }
+                document.getElementById('loc').innerHTML = x
+
+            }
+            if (myObj['Persons']) {
+                document.getElementById('person').classList.remove('d-none')
+                var x = '<b>Persons:</b>'
+
+                for (i in myObj['Persons']) {
+                    x = x + '<span class="badge badge-info badge-pill prase_badge">' + myObj['Locations'][i] + '</span>'
+                }
+                document.getElementById('person').innerHTML = x
+
+            }
+            // <span class="badge badge-primary badge-pill prase_badge"> 
+
+            // </span> 
+
+        }
+    </script>
+</body>
+
+</html>

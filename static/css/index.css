@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white !important;
+
+
+
+}
+
+input{
+    color: black !important;
+}
+
+.hide-show{
+    display: none;
+}
+.centeralign
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.btn:focus{
+    outline: none !important;
+    box-shadow: 0;
+}
+.frow{
+    width: 100% !important;
+}
+.mybtn{
+    background-color: #47aad9;
+    color: white;
+}
+.mybtn:hover{
+    background-color: #2e6e8d;
+    color: white;
+}
+.bootstrap-tagsinput .tag {
+    color: white !important;
+    background-color: teal;
+    padding: 3px;   
+    border-radius: 5px;
+}
+.bootstrap-tagsinput {
+    white-space: nowrap;
+    overflow-x: scroll;
+    color: black !important;
+  }
+.label-info {
+    color: blue !important;
+}
+
+@media (max-width:576px) {
+    .centeralign{
+      width: 90%;
+    }
+}
+.mb-3 .input-group-text{
+    padding: 0 !important;
+}
+
+h3{
+    text-align: center;
+}
+@media(max-width:700px){
+    .mybtn{
+        width: 100% !important;
+        margin-top: 20px;
+
+    }
+    h3{
+        text-align: justify !important;
+    }
+}

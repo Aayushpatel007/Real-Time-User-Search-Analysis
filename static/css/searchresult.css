@@ -1,0 +1,50 @@
+*{
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.app_page1 {
+    margin: 0;
+    overflow: hidden;
+    height: 90%;
+}
+
+@media (min-width: 768px) {
+    #left {
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        width: 30%;
+        overflow-y: scroll;
+    }
+    #right {
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        right: 0;
+        overflow-y: scroll;
+        width: 70%;
+    }
+}
+
+#left {
+    
+    /* text-align: center; */
+    height: 100%;
+}
+
+
+
+#right {
+    height: 100%;
+    /* text-align: center; */
+}
+
+.prase_badge{
+    font-size: 100% !important;
+    margin: 2px;
+}
+.summary{
+    text-align: justify;
+    font-size: 14px !important;
+    
+}
