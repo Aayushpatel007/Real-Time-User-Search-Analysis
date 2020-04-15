@@ -3,15 +3,6 @@
 
 AMOD-5410 - Big Data <br>
 
-<hr>
-
-<h3><b>Team Members:</b></h3>
-
-Aayush Patel - 0672897 <br>
-Jay Trivedi - 0671376 <br>
-Prateek Rajput - 0678743. <br>
-
-<hr>
 <h3><b>Problem Statement:</b> </h3> 
 
 A client/company has developed their website and want to analyze and store their user's search query to analyze what users are looking for and generate daily reports which can help them to solve several business questions. 
