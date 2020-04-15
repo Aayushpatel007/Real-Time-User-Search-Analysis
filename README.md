@@ -1,5 +1,5 @@
 <hr>
-<h3><b>Final Project:</b></h3>
+<h3><b>Real Time User Search Query Analysis Using Spark Structured Streaming, Delta Lake and Amazon Kinesis</b></h3>
 
 AMOD-5410 - Big Data <br>
 
